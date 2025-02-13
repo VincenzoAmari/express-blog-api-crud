@@ -78,4 +78,10 @@ const deletePost = (req, res) => {
   res.status(204).send();
 };
 
-module.exports = { getAllPosts, getPostById, deletePost };
+module.exports = {
+  getAllPosts,
+  getPostById,
+  deletePost,
+  updatePost,
+  createPost,
+};
