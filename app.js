@@ -5,6 +5,9 @@ const port = 3000;
 // Importiamo il router
 const router = require("./routers/posts");
 
+// Middleware
+app.use(express.json());
+
 app.use(express.static("public"));
 
 app.use("/api/posts", router);
