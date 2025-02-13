@@ -3,6 +3,8 @@ const router = express.Router();
 const {
   getAllPosts,
   getPostById,
+  createPost,
+  updatePost,
   deletePost,
 } = require("../controllers/postsController");
 
@@ -13,14 +15,10 @@ router.get("/", getAllPosts);
 router.get("/:id", getPostById);
 
 // // Rotta per creare un nuovo post (create)
-// router.post("/", (req, res) => {
-//   res.send("Creazione di un nuovo post");
-// });
+router.post("/", createPost);
 
 // // Rotta per aggiornare un post esistente (update)
-// router.put("/:id", (req, res) => {
-//   res.send(`Aggiornamento del post ${req.params.id}`);
-// });
+router.put("/:id", updatePost);
 
 // // Rotta per aggiornare parzialmente un post (patch)
 // router.patch("/:id", (req, res) => {
