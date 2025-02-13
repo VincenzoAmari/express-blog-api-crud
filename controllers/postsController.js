@@ -25,6 +25,27 @@ const getPostById = (req, res) => {
   res.json(post);
 };
 
+//crea il post
+const createPost = (req, res) => {
+  console.log("Dati ricevuti:", req.body);
+  const { titolo, contenuto, immagine, tags } = req.body;
+
+  if (!titolo || !contenuto || !immagine || !tags) {
+    return res.status(400).json({ error: "Tutti i campi sono obbligatori" });
+  }
+
+  const newPost = {
+    id: posts.length ? posts[posts.length - 1].id + 1 : 1,
+    titolo,
+    contenuto,
+    immagine,
+    tags,
+  };
+
+  posts.push(newPost);
+  res.status(201).json(newPost);
+};
+
 //cancella post con id selezionato
 const deletePost = (req, res) => {
   const id = parseInt(req.params.id);
