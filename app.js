@@ -20,6 +20,17 @@ app.get("/", (req, res) => {
   res.send("Server del mio blog");
 });
 
+// Middleware per gestire le rotte
+app.use((req, res) => {
+  res.status(404).json({ error: "Endpoint non trovato" });
+});
+
+// Middleware degli errori
+app.use((err, req, res, next) => {
+  console.error("Errore:", err.message);
+  res.status(500).json({ error: "Errore interno del server" });
+});
+
 app.listen(port, () => {
   console.log(`Server avviato su http://localhost:${port}`);
 });
