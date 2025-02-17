@@ -4,6 +4,8 @@ const port = 3000;
 
 // Importiamo il router
 const router = require("./routers/posts");
+const notFound = require("./middelwares/notFound");
+const errorsHandler = require("./middelwares/errorsHandler");
 
 // Middleware
 app.use(express.json());
@@ -25,11 +27,11 @@ app.use((req, res) => {
   res.status(404).json({ error: "Endpoint non trovato" });
 });
 
-// Middleware degli errori
-app.use((err, req, res, next) => {
-  console.error("Errore:", err.message);
-  res.status(500).json({ error: "Errore interno del server" });
-});
+// Middleware per gestire le rotte non trovate
+app.use(notFound);
+
+// Middleware per la gestione degli errori globali
+app.use(errorsHandler);
 
 app.listen(port, () => {
   console.log(`Server avviato su http://localhost:${port}`);
